@@ -120,13 +120,11 @@ int main(void) {
 		if (Menu == 0) {
 
 			if (bandera == 1) {
-				BSP_LCD_GLASS_Clear();
-				BSP_LCD_GLASS_DisplayString("PULSE");
-				HAL_Delay(3000);
-				bandera = 0;
+
+				BSP_LCD_GLASS_DisplayString(" PULSE ");
 
 			} else {
-
+				BSP_LCD_GLASS_Clear();
 				BSP_LCD_GLASS_ScrollSentence(" Seleccionar modo UP ", 1,
 				SCROLL_SPEED_MEDIUM);
 				bandera = 1;
@@ -551,6 +549,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if ((GPIO_Pin == ARRIBA_Pin) && (Menu != 2)) {
 		Menu = Menu + 1;
 		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2); // Cambiar el estado del LED rojo
+		//bandera=0;Probar hacer esto ;
 	} else {
 		Menu = 0;
 		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_2);
